@@ -49,6 +49,8 @@ void simpleSort(vector<int> &arr)
                 arr[j] = temp;
             }
     cout << "Array sorted using simple sort.\n";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
 }
 void bubbleSort(vector<int> &arr)
 {
@@ -61,6 +63,8 @@ void bubbleSort(vector<int> &arr)
                 arr[j + 1] = temp;
             }
     cout << "Array sorted using bubble sort.\n";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
 }
 
 void selectionSort(vector<int> &arr)
@@ -76,6 +80,8 @@ void selectionSort(vector<int> &arr)
         swap(arr[i], arr[minIndex]);
     }
     cout << "Array sorted using selection sort.\n";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
 }
 
 void insertionSort(vector<int> &arr)
@@ -92,9 +98,12 @@ void insertionSort(vector<int> &arr)
         arr[j + 1] = key;
     }
     cout << "Array sorted using insertion sort.\n";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
 }
 
-void sortElement(){
+void sortElement()
+{
     cout << "Enter numbers ";
     vector<int> numArray;
     int num;
