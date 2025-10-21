@@ -2,18 +2,24 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+void sortElement();
+void searchElement();
 
 void insertionSort(vector<int> &arr)
 {
-    for (int i = 1; i < arr.size(); i++)
+    for (int i = 1; i <= arr.size() - 1; i++)
     {
-        int j = i - 1;
-        while (j >= 0 && arr[j] > arr[i])
+        for (int j = i; j >= 1; j--)
         {
-            arr[j + 1] = arr[j];
-            j--;
+            if (arr[j - 1] > arr[j])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
+            }
+            else
+                break;
         }
-        arr[j + 1] = arr[i];
     }
     cout << "Array sorted using insertion sort.\n";
     for (int i = 0; i < arr.size(); i++)
@@ -52,7 +58,7 @@ void binarySearch(vector<int> &arr, int target)
     } while (found == 0 && top >= bottom);
     if (found == 0)
         cout << "Element not found\n";
-    else if(found == 1)
+    else if (found == 1)
         index = middle;
     cout << "Element found at index " << index << "\n";
 }
@@ -103,14 +109,33 @@ void selectionSort(vector<int> &arr)
         cout << arr[i] << " ";
 }
 
-int menu(){
+int menu()
+{
     cout << "Menu:\n";
     cout << "1. Search for an element\n";
     cout << "2. Sort the array\n";
     cout << "3. Exit\n";
     int choice;
     cin >> choice;
-    return choice;    
+    switch (choice)
+    {
+    case 1:
+    {
+        searchElement();
+        break;
+    }
+    case 2:
+    {
+        sortElement();
+        break;
+    }
+    case 3:
+        cout << "Exiting...\n";
+        return 0;
+    default:
+        cout << "Invalid choice. Please try again.\n";
+    }
+    return choice;
 }
 void sortElement()
 {
@@ -174,31 +199,14 @@ void searchElement()
     {
         binarySearch(numArray, target);
     }
-    else if (choice == 3){
+    else if (choice == 3)
+    {
         menu();
     }
 }
 
 int main()
 {
-    int choice = menu();
-    switch (choice)
-    {
-    case 1:
-    {
-        searchElement();
-        break;
-    }
-    case 2:
-    {
-        sortElement();
-        break;
-    }
-    case 3:
-        cout << "Exiting...\n";
-        return 0;
-    default:
-        cout << "Invalid choice. Please try again.\n";
-    }    
+    menu();
     return 0;
 }
