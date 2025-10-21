@@ -115,7 +115,29 @@ void selectionSort(vector<int> &arr)
             cout << arr[i] << " ";
     }
 }
-
+void binaryInsertionSort(vector<int> &arr)
+{
+    for (int i = 1; i <= arr.size() - 1; i++)
+    {
+        int key = arr[i];
+        int left = 0;
+        int right = i - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] > key)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        for (int j = i - 1; j >= left; j--)
+            arr[j + 1] = arr[j];
+        arr[left] = key;
+    }
+    cout << "Array sorted using binary insertion sort.\n";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
+}
 int menu()
     {
         cout << "Menu:\n";
@@ -155,7 +177,7 @@ void sortElement()
             if (cin.peek() == '\n')
                 break;
         }
-        cout << "Which sorting method would you like to use?\n 1. Simple Sort\n 2. Bubble Sort\n 3. Selection Sort\n 4. Insertion Sort\n 5. Back ";
+        cout << "Which sorting method would you like to use?\n 1. Simple Sort\n 2. Bubble Sort\n 3. Selection Sort\n 4. Insertion Sort\n 5. Binary Insertion Sort\n 6. Back ";
         int choice;
         cin >> choice;
 
@@ -176,6 +198,10 @@ void sortElement()
             insertionSort(numArray);
         }
         else if (choice == 5)
+        {
+            binaryInsertionSort(numArray);
+        }
+        else if (choice == 6)
         {
             menu();
         }
