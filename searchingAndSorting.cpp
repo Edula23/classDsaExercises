@@ -26,7 +26,7 @@ void insertionSort(vector<int> &arr)
         cout << arr[i] << " ";
 }
 
-void linearSearch(const vector<int> &arr, int target)
+void linearSearch(vector<int> &arr, int target)
 {
     for (size_t i = 0; i < arr.size(); i++)
     {
@@ -38,6 +38,7 @@ void linearSearch(const vector<int> &arr, int target)
     }
     cout << "Element not found\n";
 }
+
 void binarySearch(vector<int> &arr, int target)
 {
     insertionSort(arr);
@@ -62,6 +63,7 @@ void binarySearch(vector<int> &arr, int target)
         index = middle;
     cout << "Element found at index " << index << "\n";
 }
+
 void simpleSort(vector<int> &arr)
 {
     for (int i = 0; i <= arr.size() - 2; i++)
@@ -77,6 +79,7 @@ void simpleSort(vector<int> &arr)
     for (int i = 0; i < arr.size(); i++)
         cout << arr[i] << " ";
 }
+
 void bubbleSort(vector<int> &arr)
 {
     for (int i = 0; i < arr.size() - 1; i++)
@@ -94,119 +97,124 @@ void bubbleSort(vector<int> &arr)
 
 void selectionSort(vector<int> &arr)
 {
-    for (int i = 0; i < arr.size() - 1; i++)
+    int minIndex, temp;
+    for (int i = 0; i <= arr.size() - 2; i++)
     {
-        int minIndex = i;
-        for (int j = i + 1; j < arr.size(); j++)
-        {
+        minIndex = i;
+        for (int j = i + 1; j <= arr.size() - 1; j++)
             if (arr[j] < arr[minIndex])
                 minIndex = j;
+        if (minIndex != i)
+        {
+            temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
         }
-        swap(arr[i], arr[minIndex]);
+        cout << "Array sorted using selection sort.\n";
+        for (int i = 0; i < arr.size(); i++)
+            cout << arr[i] << " ";
     }
-    cout << "Array sorted using selection sort.\n";
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
 }
 
 int menu()
-{
-    cout << "Menu:\n";
-    cout << "1. Search for an element\n";
-    cout << "2. Sort the array\n";
-    cout << "3. Exit\n";
-    int choice;
-    cin >> choice;
-    switch (choice)
     {
-    case 1:
-    {
-        searchElement();
-        break;
+        cout << "Menu:\n";
+        cout << "1. Search for an element\n";
+        cout << "2. Sort the array\n";
+        cout << "3. Exit\n";
+        int choice;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+        {
+            searchElement();
+            break;
+        }
+        case 2:
+        {
+            sortElement();
+            break;
+        }
+        case 3:
+            cout << "Exiting...\n";
+            return 0;
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+        return choice;
     }
-    case 2:
-    {
-        sortElement();
-        break;
-    }
-    case 3:
-        cout << "Exiting...\n";
-        return 0;
-    default:
-        cout << "Invalid choice. Please try again.\n";
-    }
-    return choice;
-}
 void sortElement()
-{
-    cout << "Enter numbers ";
-    vector<int> numArray;
-    int num;
-    while (cin >> num)
     {
-        numArray.push_back(num);
-        if (cin.peek() == '\n')
-            break;
-    }
-    cout << "Which sorting method would you like to use?\n 1. Simple Sort\n 2. Bubble Sort\n 3. Selection Sort\n 4. Insertion Sort\n 5. Back\n";
-    int choice;
-    cin >> choice;
+        cout << "Enter numbers ";
+        vector<int> numArray;
+        int num;
+        while (cin >> num)
+        {
+            numArray.push_back(num);
+            if (cin.peek() == '\n')
+                break;
+        }
+        cout << "Which sorting method would you like to use?\n 1. Simple Sort\n 2. Bubble Sort\n 3. Selection Sort\n 4. Insertion Sort\n 5. Back ";
+        int choice;
+        cin >> choice;
 
-    if (choice == 1)
-    {
-        simpleSort(numArray);
+        if (choice == 1)
+        {
+            simpleSort(numArray);
+        }
+        else if (choice == 2)
+        {
+            bubbleSort(numArray);
+        }
+        else if (choice == 3)
+        {
+            selectionSort(numArray);
+        }
+        else if (choice == 4)
+        {
+            insertionSort(numArray);
+        }
+        else if (choice == 5)
+        {
+            menu();
+        }
     }
-    else if (choice == 2)
-    {
-        bubbleSort(numArray);
-    }
-    else if (choice == 3)
-    {
-        selectionSort(numArray);
-    }
-    else if (choice == 4)
-    {
-        insertionSort(numArray);
-    }
-    else if (choice == 5)
-    {
-        menu();
-    }
-}
 void searchElement()
-{
-    cout << "Enter numbers ";
-    vector<int> numArray;
-    int num;
-    while (cin >> num)
     {
-        numArray.push_back(num);
-        if (cin.peek() == '\n')
-            break;
-    }
-    cout << "Enter number to search: ";
-    int target;
-    cin >> target;
-    cout << "Which searching method would you like to use?\n 1. Linear Search\n 2. Binary Search\n 3.Back\n";
-    int choice;
-    cin >> choice;
+        cout << "Enter numbers ";
+        vector<int> numArray;
+        int num;
+        while (cin >> num)
+        {
+            numArray.push_back(num);
+            if (cin.peek() == '\n')
+                break;
+        }
+        cout << "Enter number to search: ";
+        int target;
+        cin >> target;
+        cout << "Which searching method would you like to use?\n 1. Linear Search\n 2. Binary Search\n 3.Back\n";
+        int choice;
+        cin >> choice;
 
-    if (choice == 1)
-    {
-        linearSearch(numArray, target);
+        if (choice == 1)
+        {
+            linearSearch(numArray, target);
+        }
+        else if (choice == 2)
+        {
+            binarySearch(numArray, target);
+        }
+        else if (choice == 3)
+        {
+            menu();
+        }
     }
-    else if (choice == 2)
-    {
-        binarySearch(numArray, target);
-    }
-    else if (choice == 3)
-    {
-        menu();
-    }
-}
 
 int main()
-{
-    menu();
-    return 0;
-}
+
+    {
+        menu();
+        return 0;
+    }
