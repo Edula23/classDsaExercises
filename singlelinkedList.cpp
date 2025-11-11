@@ -177,8 +177,7 @@ int main(){
         break;
     case 9:
         cout<<"Enter name to search for";        
-        struct student *d;
-        d = new student;
+        student *d;
         cin>>d->name;
         search(d, &start);
         break;
